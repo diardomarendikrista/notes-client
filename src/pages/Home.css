@@ -1,0 +1,16 @@
+body {
+  background-image: url("../assets/img/bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.home {
+  min-height: 90vh;
+  margin: 30px;
+  padding: 20px;
+  /* box-shadow: 0 0 10px 2px #B4EBFF; */
+}
+
+.btn-to-another {
+  margin-left: 5px;
+}
