@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import axios from "../axios";
+import { setFormType, signin } from "../store/actions/login";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,22 +19,15 @@ export default function Login() {
       };
       setEmail("");
       setPassword("");
-      try {
-        const { data } = await axios.post("/login", user);
-        localStorage.setItem('access_token', data.access_token);
-        history.push('/notes');
-      } catch (error) {
-        console.log(error.response);
-        if (!error.response) alert("Sorry, connection to server failed / server down. Please contact administrator");
-        else alert(error.response.data.message);
-      }
+      const hasil = await dispatch(signin(user));
+      if (hasil) history.push("/notes");
     } else {
       alert("please fill email & password");
     }
   };
 
   const changeFormType = (value) => {
-    dispatch({ type: "formType/setFormType", payload: value });
+    dispatch(setFormType(value));
   };
 
   return (

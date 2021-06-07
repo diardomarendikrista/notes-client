@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import axios from "../axios";
+import { setFormType, signup } from "../store/actions/login";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -12,34 +12,27 @@ export default function Register() {
 
   const register = async (event) => {
     event.preventDefault();
-    try {
-      // check, is password and repeat password is same?
-      if (password === passwordRepeat) {
-        const newUser = {
-          name,
-          email,
-          password,
-        };
-        await axios.post("/register", newUser);
-        
-        // if success.. move to login and clear form
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+    if (password === passwordRepeat) {
+      const result = await dispatch(signup(newUser));
+      if (result) {
         setName("");
         setEmail("");
         setPassword("");
         setPasswordRepeat("");
-        dispatch({ type: "formType/setFormType", payload: "login"});
-      } else {
-        alert("Password didn't match");
       }
-    } catch (error) {
-      console.log(error.response);
-      if (!error.response) alert("Sorry, connection to server failed / server down. Please contact administrator");
-      else alert(error.response.data.message);
+    } else {
+      alert("Password didn't match");
+      return false;
     }
   };
 
   const changeFormType = (value) => {
-    dispatch({ type: "formType/setFormType", payload: value });
+    dispatch(setFormType(value));
   };
 
   return (

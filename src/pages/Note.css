@@ -1,7 +1,12 @@
 body {
-  background-image: url("../assets/img/bg.jpg");
+  /* background-image: url("../assets/img/bg.jpg");
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
+  background-color: #fff;
+}
+
+.add-btn {
+  margin: 10px;
 }
 
 .note {
@@ -9,4 +14,19 @@ body {
   margin: 30px;
   padding: 20px;
   /* box-shadow: 0 0 10px 2px #B4EBFF; */
+}
+
+.note-container {
+  text-align: center;
+}
+
+.note-table {
+  margin: auto;
+}
+.title {
+  margin-top: 10px;
+}
+
+.note-list {
+  margin: auto;
 }
