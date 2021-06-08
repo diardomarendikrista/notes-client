@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
-import { setFormType, signup } from "../store/actions/login";
+import { setFormType, signup } from "../store/actions/user";
 
 export default function Register() {
   const [name, setName] = useState("");

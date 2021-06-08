@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import CardNote from "../components/CardNote";
-import axios from "../axios";
+import { fetchNotes } from "../store/actions/note";
+import { fetchProfile } from "../store/actions/user";
 
 export default function Note() {
-  const profile = useSelector((state) => state.login.profile);
+  const profile = useSelector((state) => state.user.profile);
   const notes = useSelector((state) => state.note.notes);
 
   const history = useHistory();
@@ -20,44 +21,11 @@ export default function Note() {
       history.push("/");
     } else {
       // load notes
-      fetchNote();
-      fetchProfile();
+      dispatch(fetchNotes());
+      dispatch(fetchProfile());
     }
     // eslint-disable-next-line
   }, []);
-
-  const fetchNote = async () => {
-    try {
-      const headers = {
-        access_token: localStorage.getItem("access_token"),
-      };
-      const { data } = await axios.get("/notes", { headers });
-      console.log(data);
-      dispatch({ type: "notes/setNotes", payload: data });
-    } catch (error) {
-      if (!error.response)
-        alert(
-          "Sorry, connection to server failed / server down. Please contact administrator"
-        );
-      else console.log(error.response);
-    }
-  };
-
-  const fetchProfile = async () => {
-    try {
-      const headers = {
-        access_token: localStorage.getItem("access_token"),
-      };
-      const { data } = await axios.get("/user", { headers });
-      dispatch({ type: "profile/setProfile", payload: data.user });
-    } catch (error) {
-      if (!error.response)
-        alert(
-          "Sorry, connection to server failed / server down. Please contact administrator"
-        );
-      else console.log(error.response);
-    }
-  };
 
   const addNote = () => {
     history.push('/notes/add');

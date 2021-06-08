@@ -1,7 +1,30 @@
 import axios from "../../axios";
+import Swal from "sweetalert2";
 
 export function setFormType(payload) {
   return { type: "formType/setFormType", payload };
+}
+
+export function setProfile(payload) {
+  return { type: "profile/setProfile", payload };
+}
+
+export function fetchProfile() {
+  return async (dispatch) => {
+    try {
+      const headers = {
+        access_token: localStorage.getItem("access_token"),
+      };
+      const { data } = await axios.get("/user", { headers });
+      dispatch(setProfile(data.user));
+    } catch (error) {
+      if (!error.response)
+        alert(
+          "Sorry, connection to server failed / server down. Please contact administrator"
+        );
+      else console.log(error.response);
+    }
+  };
 }
 
 export function signin(user) {
@@ -35,7 +58,9 @@ export function signup(newUser) {
 }
 
 function connectionDown() {
-  alert(
-    "Sorry, connection to server failed / server down. Please contact administrator"
-  );
+  Swal.fire(
+    'Information!',
+    'Sorry, connection to server failed / server down. Please contact administrator.',
+    'warning'
+  )
 }

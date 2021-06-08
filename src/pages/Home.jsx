@@ -8,7 +8,7 @@ import Login from "./Login";
 import Register from "./Register";
 
 export default function Home() {
-  const formType = useSelector((state) => state.login.formType);
+  const formType = useSelector((state) => state.user.formType);
   const history = useHistory();
 
   useEffect(() => {

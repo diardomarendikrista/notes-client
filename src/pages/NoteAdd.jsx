@@ -1,8 +1,10 @@
 import "./NoteAdd.css";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
+import { newNotes } from "../store/actions/note";
 
 export default function NoteAdd() {
   const [title, setTitle] = useState("");
@@ -11,6 +13,7 @@ export default function NoteAdd() {
   // eslint-disable-next-line
   const [status, setStatus] = useState("private");
 
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const toHome = () => {
@@ -26,6 +29,7 @@ export default function NoteAdd() {
       status,
     };
     console.log(newNote);
+    dispatch(newNotes(newNote));
   };
 
   return (

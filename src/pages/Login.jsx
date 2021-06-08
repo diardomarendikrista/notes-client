@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { setFormType, signin } from "../store/actions/login";
+import { setFormType, signin } from "../store/actions/user";
 
 export default function Login() {
   const [email, setEmail] = useState("");

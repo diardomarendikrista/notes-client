@@ -40,14 +40,15 @@
 
 .card-note {
   width: 95%;
+  margin-bottom: 5px;
   min-height: 180px;
   transition: 200ms;
 }
 
 .card-note:hover  {
   background-color: azure;
-  margin-top: -3px;
-  padding-bottom: 3px;
+  /* margin-top: -3px;
+  padding-bottom: 3px; */
   transition: 200ms;
   cursor: pointer;
 }
