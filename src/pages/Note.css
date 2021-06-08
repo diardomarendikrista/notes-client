@@ -9,6 +9,11 @@ body {
   margin: 10px;
 }
 
+.div-no-note {
+  margin-top: 70px;
+  color: gray;
+}
+
 .note {
   min-height: 90vh;
   margin: 30px;

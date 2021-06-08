@@ -31,6 +31,15 @@ export default function Note() {
     history.push('/notes/add');
   }
 
+  const noNote = () => {
+    return (
+      <div className="div-no-note">
+        <h3>No notes yet</h3>
+        <p>tap on the +New Note to create new note</p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <Helmet>
@@ -49,6 +58,7 @@ export default function Note() {
         <div className="note-list">
           <center>
             {
+              notes.length < 1 ? noNote() :
               notes.map(note => (
                 <CardNote
                   note={note}

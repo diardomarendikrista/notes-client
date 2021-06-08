@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Note from "./pages/Note";
 import NoteAdd from "./pages/NoteAdd";
+import NoteEdit from "./pages/NoteEdit";
+import NoteDetail from "./pages/NoteDetail";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -10,6 +12,12 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
+        <Route path="/notes/show/:id">
+          <NoteDetail />
+        </Route>
+        <Route path="/notes/edit/:id">
+          <NoteEdit />
+        </Route>
         <Route path="/notes/add">
           <NoteAdd />
         </Route>

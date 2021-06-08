@@ -28,7 +28,7 @@ export default function Home() {
 
       <div className="home">
         <Row>
-          <Col>
+          <Col lg>
             <h1>Simple Note app</h1>
             <p>
               Register with easy-peasy way to get into our services. Our apps
@@ -42,7 +42,7 @@ export default function Home() {
             </p>
             <p>Hope you enjoy your day with Simple Note!!</p>
           </Col>
-          <Col>{formType === "login" ? <Login /> : <Register />}</Col>
+          <Col lg>{formType === "login" ? <Login /> : <Register />}</Col>
         </Row>
       </div>
     </Container>

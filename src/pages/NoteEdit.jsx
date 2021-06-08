@@ -1,12 +1,15 @@
 import "./NoteAdd.css";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
-import { newNoteAsync } from "../store/actions/note";
+import { updateNoteAsync, fetchNoteAsync } from "../store/actions/note";
 
 export default function NoteAdd() {
+  const { id } = useParams();
+
+  const originPage = useSelector(state => state.note.originPage);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
@@ -16,20 +19,36 @@ export default function NoteAdd() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const toHome = () => {
-    history.push("/notes");
+  useEffect(() => {
+    fetchEditNote();
+    // eslint-disable-next-line
+  }, []);
+
+  const fetchEditNote = async () => {
+    const data = await dispatch(fetchNoteAsync(id));
+    setTitle(data.title);
+    setNote(data.note);
+    setTag(data.tag);
+    setStatus(data.status);
   }
 
-  const createNewNote = async (event) => {
+
+  const updateNote = async (event) => {
     event.preventDefault();
-    const newNote = {
+    const updateNote = {
+      id,
       title,
       note,
       tag,
       status,
     };
-    // console.log(newNote);
-    await dispatch(newNoteAsync(newNote));
+    // console.log(updateNote);
+    await dispatch(updateNoteAsync(updateNote));
+    if (originPage === "home") history.push("/notes");
+    if (originPage === "detail") history.push("/notes/show/" + updateNote.id);
+  };
+
+  const toHome = () => {
     history.push("/notes");
   };
 
@@ -37,14 +56,14 @@ export default function NoteAdd() {
     <div className="container2">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Add Note - Simple Note App</title>
+        <title>Edit Note - Simple Note App</title>
         <link rel="Note app" href="" />
       </Helmet>
 
       <h3>
-        <b>New Note</b>
+        <b>Edit Note</b>
       </h3>
-      <Form onSubmit={(event) => createNewNote(event)}>
+      <Form onSubmit={(event) => updateNote(event)}>
         <Form.Group controlId="formBasicText">
           <Form.Label>Note Title *</Form.Label>
           <Form.Control
