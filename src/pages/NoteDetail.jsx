@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 import { fetchNoteAsync, setOriginPage } from "../store/actions/note";
 import capitalize from "../helpers/capitalize";
 
-export default function NoteAdd() {
+export default function NoteDetail() {
   const { id } = useParams();
 
   const [title, setTitle] = useState("");
@@ -45,7 +45,7 @@ export default function NoteAdd() {
     <div className="container2">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Edit Note - Simple Note App</title>
+        <title>Detail Note - Simple Note App</title>
         <link rel="Note app" href="" />
       </Helmet>
 
