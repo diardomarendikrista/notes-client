@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { setFormType, signin } from "../store/actions/user";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export default function Login() {
       const hasil = await dispatch(signin(user));
       if (hasil) history.push("/notes");
     } else {
-      alert("please fill email & password");
+      Swal.fire("please fill email & password", "", "info");
     }
   };
 
@@ -34,7 +35,7 @@ export default function Login() {
     <>
       <h1>Login</h1>
       <Form onSubmit={(event) => login(event)}>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId="formBasicEmail" className="mb-2">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -47,7 +48,7 @@ export default function Login() {
           </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicPassword" className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
@@ -56,6 +57,7 @@ export default function Login() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </Form.Group>
+
         <Button variant="primary" type="submit">
           Login
         </Button>

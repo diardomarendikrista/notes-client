@@ -39,7 +39,7 @@ export default function Register() {
     <>
       <h1>Register</h1>
       <Form onSubmit={(event) => register(event)}>
-        <Form.Group controlId="formBasicName">
+        <Form.Group controlId="formBasicName" className="mb-2">
           <Form.Label>Your Name</Form.Label>
           <Form.Control
             type="text"
@@ -49,7 +49,7 @@ export default function Register() {
           />
         </Form.Group>
 
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId="formBasicEmail" className="mb-2">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -71,7 +71,7 @@ export default function Register() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword2">
+        <Form.Group controlId="formBasicPassword2" className="mb-3">
           <Form.Control
             type="password"
             placeholder="Repeat Password"
@@ -79,7 +79,7 @@ export default function Register() {
             onChange={(event) => setPasswordRepeat(event.target.value)}
           />
           <Form.Text className="text-muted">
-            Password section already well encrypted (using Bcrypt) and will
+            Password section already well encrypted and will
             never leak.
           </Form.Text>
         </Form.Group>

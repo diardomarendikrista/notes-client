@@ -5,10 +5,6 @@ body {
   background-color: #fff;
 }
 
-.add-btn {
-  margin: 10px;
-}
-
 .div-no-note {
   margin-top: 70px;
   color: gray;
@@ -22,16 +18,14 @@ body {
 }
 
 .note-container {
-  text-align: center;
+  width: 95%;
+  margin: auto;
 }
 
 .note-table {
   margin: auto;
 }
-.title {
-  margin-top: 10px;
-}
 
-.note-list {
-  margin: auto;
+.invisible {
+  display: none;
 }

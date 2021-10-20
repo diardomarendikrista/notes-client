@@ -18,10 +18,7 @@ export function fetchProfile() {
       const { data } = await axios.get("/user", { headers });
       dispatch(setProfile(data.user));
     } catch (error) {
-      if (!error.response)
-        alert(
-          "Sorry, connection to server failed / server down. Please contact administrator"
-        );
+      if (!error.response) connectionDown();
       else console.log(error.response);
     }
   };
@@ -36,7 +33,7 @@ export function signin(user) {
     } catch (error) {
       console.log(error.response);
       if (!error.response) connectionDown();
-      else alert(error.response.data.message);
+      else Swal.fire(error.response.data.message, "", "error");
     }
   };
 }
@@ -52,15 +49,15 @@ export function signup(newUser) {
     } catch (error) {
       console.log(error.response);
       if (!error.response) connectionDown();
-      else alert(error.response.data.message);
+      else Swal.fire(error.response.data.message, "", "error");
     }
   };
 }
 
 function connectionDown() {
   Swal.fire(
-    'Information!',
-    'Sorry, connection to server failed / server down. Please contact administrator.',
-    'warning'
-  )
+    "Information!",
+    "Sorry, connection to server failed / server down. Please contact administrator.",
+    "warning"
+  );
 }

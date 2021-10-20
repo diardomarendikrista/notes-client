@@ -9,9 +9,18 @@ export function setOriginPage(payload) {
   return { type: "originPage/setOriginPage", payload };
 }
 
+export function setLoadingNote(payload) {
+  return { type: "loadingNote/setLoadingNote", payload };
+}
+
+export function setLoadingDetail(payload) {
+  return { type: "loadingDetail/setLoadingDetail", payload };
+}
+
 export function fetchNotes() {
   return async (dispatch) => {
     try {
+      dispatch(setLoadingNote(true));
       const headers = {
         access_token: localStorage.getItem("access_token"),
       };
@@ -22,6 +31,8 @@ export function fetchNotes() {
       console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
+    } finally {
+      dispatch(setLoadingNote(false));
     }
   };
 }
@@ -29,6 +40,7 @@ export function fetchNotes() {
 export function fetchNoteAsync(id) {
   return async (dispatch) => {
     try {
+      dispatch(setLoadingDetail(true));
       const headers = {
         access_token: localStorage.getItem("access_token"),
       };
@@ -38,6 +50,28 @@ export function fetchNoteAsync(id) {
       console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
+    } finally {
+      dispatch(setLoadingDetail(false));
+    }
+  };
+}
+
+export function searchNoteAsync(keyword) {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoadingNote(true));
+      const headers = {
+        access_token: localStorage.getItem("access_token"),
+      };
+      const { data } = await axios.get("/notes/search/" + keyword, { headers });
+      // console.log(data);
+      dispatch(setNotes(data.data));
+    } catch (error) {
+      console.log(error.response);
+      if (!error.response) connectionDown();
+      else alert(error.response.data.message);
+    } finally {
+      dispatch(setLoadingNote(false));
     }
   };
 }
@@ -68,7 +102,11 @@ export function updateNoteAsync(updateNote) {
         headers,
       });
       // console.log(data);
-      Swal.fire("Success!", `note ${data.data.title} has been edited!`, "success");
+      Swal.fire(
+        "Success!",
+        `note ${data.data.title} has been edited!`,
+        "success"
+      );
     } catch (error) {
       console.log(error.response);
       if (!error.response) connectionDown();
