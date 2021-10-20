@@ -18,10 +18,12 @@ export default function Login() {
         email,
         password,
       };
-      setEmail("");
       setPassword("");
       const hasil = await dispatch(signin(user));
-      if (hasil) history.push("/notes");
+      if (hasil) {
+        setEmail("");
+        history.push("/notes");
+      }
     } else {
       Swal.fire("please fill email & password", "", "info");
     }

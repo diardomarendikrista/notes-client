@@ -41,7 +41,7 @@ export default function NoteAdd() {
     <div className="container2">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Add Note - Simple Note App</title>
+        <title>Add Note - Petek Note App</title>
         <link rel="Note app" href="" />
       </Helmet>
 

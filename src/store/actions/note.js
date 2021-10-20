@@ -28,7 +28,7 @@ export function fetchNotes() {
       // console.log(data);
       dispatch(setNotes(data));
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     } finally {
@@ -47,7 +47,7 @@ export function fetchNoteAsync(id) {
       const { data } = await axios.get("/notes/" + id, { headers });
       return data;
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     } finally {
@@ -67,7 +67,7 @@ export function searchNoteAsync(keyword) {
       // console.log(data);
       dispatch(setNotes(data.data));
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     } finally {
@@ -85,7 +85,7 @@ export function newNoteAsync(newNote) {
       const { data } = await axios.post("/notes", newNote, { headers });
       Swal.fire("Success!", `note ${data.title} has been created!`, "success");
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     }
@@ -108,7 +108,7 @@ export function updateNoteAsync(updateNote) {
         "success"
       );
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     }
@@ -134,7 +134,7 @@ export function deleteNoteAsync(id) {
             access_token: localStorage.access_token,
           };
           const { data } = await axios.delete("/notes/" + id, { headers });
-          console.log(id);
+          // console.log(id);
           if (data) {
             dispatch(fetchNotes());
             Swal.fire("Deleted!", "Noted already deleted.", "success");
@@ -142,7 +142,7 @@ export function deleteNoteAsync(id) {
         }
       });
     } catch (error) {
-      console.log(error.response);
+      // console.log(error.response);
       if (!error.response) connectionDown();
       else alert(error.response.data.message);
     }

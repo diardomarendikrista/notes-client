@@ -29,7 +29,7 @@ export default function Navibar() {
 
   const about = (event) => {
     event.preventDefault();
-    Swal.fire("Simple Note App", "by: Diardo.<br /> ver: 1.01", "info");
+    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 1.01", "info");
   };
 
   return (
@@ -46,7 +46,7 @@ export default function Navibar() {
           height="30"
           className="d-inline-block align-top"
         />{" "}
-        Simple Note App
+        Petek Note App
       </Navbar.Brand>
       <Nav className="me-auto"></Nav>
       <Form inline>

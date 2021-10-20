@@ -22,14 +22,30 @@ export default function Home() {
     <Container fluid>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Simple Note App</title>
+        <title>Petek Note App</title>
         <link rel="Note app" href="" />
       </Helmet>
 
       <div className="home">
         <Row>
           <Col lg>
-            <h1>Simple Note app</h1>
+            <div className="d-flex align-items-center mb-2">
+              <div
+                className="me-1"
+                style={{
+                  borderRadius: "10px",
+                  overflow: "hidden",
+                  width: "55px",
+                }}
+              >
+                <img
+                  src="https://i.imgur.com/wS1NqtG.jpg"
+                  alt="petek"
+                  width="100%"
+                />
+              </div>
+              <h1>Petek Note app</h1>
+            </div>
             <p>
               Register with easy-peasy way to get into our services. Our apps
               already encrypted with safe way and will not leak to another
