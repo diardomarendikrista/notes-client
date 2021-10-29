@@ -1,8 +1,0 @@
-{
-	"appId": "io.ionic.peteknotes",
-	"appName": "Petek Notes",
-	"bundledWebRuntime": false,
-	"npmClient": "yarn",
-	"webDir": "build",
-	"cordova": {}
-}

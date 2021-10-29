@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Petek Notes</string>
-    <string name="title_activity_main">Petek Notes</string>
-    <string name="package_name">io.ionic.peteknotes</string>
-    <string name="custom_url_scheme">io.ionic.peteknotes</string>
-</resources>
