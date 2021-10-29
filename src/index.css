@@ -22,3 +22,8 @@ code {
 .ck-editor__editable_inline {
   min-height: 200px;
 }
+
+p {
+  padding: 0px;
+  margin: 0px;
+}

@@ -1,13 +1,15 @@
 import "./CardNote.css";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import { BsFillTrashFill, BsPencilSquare } from "react-icons/bs";
+import { BsXLg, BsPencilSquare } from "react-icons/bs";
 import { capitalize } from "helpers/globalFunctions";
 import { deleteNoteAsync, setOriginPage } from "store/actions/note";
 
 export default function CardNote({ note }) {
+  const { notes } = useSelector((state) => state.note);
+  
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,20 +23,19 @@ export default function CardNote({ note }) {
   };
 
   const deleteNote = (id) => {
-    dispatch(deleteNoteAsync(id));
+    dispatch(deleteNoteAsync(id, notes));
   };
 
   return (
     <>
       <Card className="card-note">
         {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-        <Card.Body>
+        <Card.Body style={{ padding: "8px 10px" }}>
           <div onClick={() => detailNote(note.id)}>
             <div>
               <p className="text-title text-start">{capitalize(note.title)}</p>
             </div>
-            <div className="text-note-size">
-              
+            <div className="text-note-wrapper">
               <p className="p-note text-start" dangerouslySetInnerHTML={{ __html: note.note }} />
             </div>
             <div className="text-readmore text-start">
@@ -44,11 +45,13 @@ export default function CardNote({ note }) {
           <div className="btn-div">
             <BsPencilSquare
               onClick={() => editNote(note.id)}
-              className="btn-edit"
+              className="btn-edit me-2"
+              size="18px"
             />
-            <BsFillTrashFill
+            <BsXLg
               onClick={() => deleteNote(note.id)}
               className="btn-delete"
+              size="16px"
             />
           </div>
         </Card.Body>

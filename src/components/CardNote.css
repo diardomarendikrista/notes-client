@@ -1,8 +1,12 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 .btn-div {
   position: absolute;
-  min-height: 50px;
-  right: 15px;
-  bottom: -5px;
+  top: 8px;
+  right: 12px;
 }
 
 .btn-delete,
@@ -43,7 +47,7 @@
 .card-note {
   width: 100%;
   margin-bottom: 5px;
-  min-height: 180px;
+  min-height: 125px;
   transition: 200ms;
 }
 
@@ -62,11 +66,10 @@
 }
 
 .p-note {
-  margin: 0px;
-  padding: 0px;
+  font-size: 16px;
 }
 
-.text-note-size {
+.text-note-wrapper {
   /* max-height: 50px; */
   display: -webkit-box;
   word-break: break-word;
@@ -83,18 +86,22 @@
   bottom: 10px;
   color: #17a2b8;
   cursor: pointer;
+  font-size: 14px;
+  transition: all 0.1s;
 }
 
 .text-readmore:hover {
-  font-size: 18px;
+  font-size: 15px;
+  transition: all 0.1s;
 }
 
 .text-readmore:active {
-  font-size: 16px;
+  font-size: 14.5px;
+  transition: all 0.1s;
 }
 
 .text-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: 200ms;

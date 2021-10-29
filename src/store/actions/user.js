@@ -9,9 +9,14 @@ export function setProfile(payload) {
   return { type: "profile/setProfile", payload };
 }
 
+export function setLoadingGlobal(payload) {
+  return { type: "loadingGlobal/setLoadingGlobal", payload };
+}
+
 export function fetchProfile() {
   return async (dispatch) => {
     try {
+      dispatch(setLoadingGlobal(true));
       const headers = {
         access_token: localStorage.getItem("access_token"),
       };
@@ -20,6 +25,8 @@ export function fetchProfile() {
     } catch (error) {
       if (!error.response) connectionDown();
       else console.log(error.response);
+    } finally {
+      dispatch(setLoadingGlobal(false));
     }
   };
 }

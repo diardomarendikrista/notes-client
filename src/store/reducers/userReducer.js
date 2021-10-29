@@ -1,7 +1,7 @@
 const initialState = {
   isLogin: false,
   formType: "login",
-  profile: {},
+  profile: false,
   loading: true,
   error: false,
 };

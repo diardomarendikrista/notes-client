@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Note from "./pages/Note";
+import Note from "./pages/Note/Note";
 import NoteAdd from "./pages/NoteAdd";
 import NoteEdit from "./pages/NoteEdit";
 import NoteDetail from "./pages/NoteDetail";

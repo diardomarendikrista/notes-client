@@ -1,6 +1,6 @@
 import "./NoteAdd.css";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
@@ -11,6 +11,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function NoteAdd() {
+  const { notes } = useSelector((state) => state.note);
+
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
@@ -22,7 +24,7 @@ export default function NoteAdd() {
 
   const toHome = () => {
     history.push("/notes");
-  }
+  };
 
   const createNewNote = async (event) => {
     event.preventDefault();
@@ -33,7 +35,7 @@ export default function NoteAdd() {
       status,
     };
     // console.log(newNote);
-    await dispatch(newNoteAsync(newNote));
+    await dispatch(newNoteAsync(newNote, notes));
     history.push("/notes");
   };
 
@@ -68,7 +70,7 @@ export default function NoteAdd() {
             onChange={(event) => setNote(event.target.value)}
           />
         </Form.Group> */}
-        
+
         <div className="mb-2">
           <Form.Label>Notes</Form.Label>
           <CKEditor

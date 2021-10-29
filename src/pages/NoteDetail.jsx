@@ -46,7 +46,7 @@ export default function NoteDetail() {
   }, []);
 
   return (
-    <div className="container2">
+    <div className="container-detail">
       <Helmet>
         <meta charSet="utf-8" />
         <title>Detail Note - Petek Note App</title>
@@ -54,24 +54,21 @@ export default function NoteDetail() {
       </Helmet>
 
       {loadingDetail ? (
-        <Loader />
+        <div className="mb-5">
+          <Loader />
+        </div>
       ) : (
         <>
-          <h3 className="mb-3">
+          <h3 className="mb-3 text-wrap text-break">
             <b>{capitalize(title)}</b>
           </h3>
-          {/* <p>
-      {note.split("\n").map(function (item, idx) {
-        return (
-          <span key={idx}>
-            {item}
-            <br />
-          </span>
-        );
-      })}
-    </p> */}
-          <p dangerouslySetInnerHTML={{ __html: note }} />
-          <p>tag : {tag ? tag : "- no tag -"}</p>
+          <div className="text-wrap text-break">
+            <p dangerouslySetInnerHTML={{ __html: note }} className="mb-2" />
+          </div>
+          <hr />
+          <p className="mb-3 text-wrap text-break">
+            tag : {tag ? tag : "- no tag -"}
+          </p>
           <Button
             onClick={() => editNote(id)}
             className="btn-submit"

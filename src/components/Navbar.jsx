@@ -29,7 +29,7 @@ export default function Navibar() {
 
   const about = (event) => {
     event.preventDefault();
-    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 1.01", "info");
+    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 1.02<br /><a href='https://diardokrista.web.app/' target='_blank'>diardokrista.web.app</a>", "info");
   };
 
   return (
@@ -40,7 +40,7 @@ export default function Navibar() {
         className="ms-lg-4 ms-sm-1"
       >
         <img
-          alt=""
+          alt="petek note app"
           src={Logo}
           width="30"
           height="30"

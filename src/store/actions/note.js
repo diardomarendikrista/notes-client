@@ -76,14 +76,23 @@ export function searchNoteAsync(keyword) {
   };
 }
 
-export function newNoteAsync(newNote) {
+export function newNoteAsync(newNote, notes) {
   return async (dispatch) => {
     try {
       const headers = {
         access_token: localStorage.getItem("access_token"),
       };
       const { data } = await axios.post("/notes", newNote, { headers });
-      Swal.fire("Success!", `note ${data.title} has been created!`, "success");
+
+      // adding on global state instead of re-fetch (we need more speed!!)
+      const newData = [data.data, ...notes];
+      dispatch(setNotes(newData));
+
+      Swal.fire(
+        "Success!",
+        `note ${data.data.title} has been created!`,
+        "success"
+      );
     } catch (error) {
       // console.log(error.response);
       if (!error.response) connectionDown();
@@ -92,7 +101,7 @@ export function newNoteAsync(newNote) {
   };
 }
 
-export function updateNoteAsync(updateNote) {
+export function updateNoteAsync(updateNote, notes) {
   return async (dispatch) => {
     try {
       const headers = {
@@ -101,7 +110,16 @@ export function updateNoteAsync(updateNote) {
       const { data } = await axios.put("/notes/" + updateNote.id, updateNote, {
         headers,
       });
-      // console.log(data);
+      // console.log(notes, "data notes");
+      // console.log(data, "updated data");
+
+      // anti refetch club
+      const newData = notes.map(item => {
+        if (item.id === data.data.id) return data.data
+        else return item
+      })
+      dispatch(setNotes(newData));
+
       Swal.fire(
         "Success!",
         `note ${data.data.title} has been edited!`,
@@ -115,7 +133,7 @@ export function updateNoteAsync(updateNote) {
   };
 }
 
-export function deleteNoteAsync(id) {
+export function deleteNoteAsync(id, notes) {
   return (dispatch) => {
     try {
       // delete confirmation
@@ -136,8 +154,12 @@ export function deleteNoteAsync(id) {
           const { data } = await axios.delete("/notes/" + id, { headers });
           // console.log(id);
           if (data) {
-            dispatch(fetchNotes());
-            Swal.fire("Deleted!", "Noted already deleted.", "success");
+            // dispatch(fetchNotes());
+            // refetch only for weak people
+            const newData = notes.filter((item) => item.id !== id);
+            dispatch(setNotes(newData));
+
+            Swal.fire("Deleted!", "Note has been deleted.", "success");
           }
         }
       });

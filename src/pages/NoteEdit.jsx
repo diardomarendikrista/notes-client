@@ -14,7 +14,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default function NoteAdd() {
   const { id } = useParams();
 
-  const { originPage, loadingDetail } = useSelector((state) => state.note);
+  const { originPage, loadingDetail, notes } = useSelector((state) => state.note);
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
@@ -47,7 +47,7 @@ export default function NoteAdd() {
       status,
     };
     // console.log(updateNote);
-    await dispatch(updateNoteAsync(updateNote));
+    await dispatch(updateNoteAsync(updateNote, notes));
     if (originPage === "home") history.push("/notes");
     if (originPage === "detail") history.push("/notes/show/" + updateNote.id);
   };
