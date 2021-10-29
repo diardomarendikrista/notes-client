@@ -33,9 +33,9 @@ export const Wrapper = styled.div`
   }
 
   .sticky {
-    position: fixed;
-    width: 95%;
-    top: 0px;
+    position: sticky;
+    width: 100%;
+    top: 5px;
     z-index: 1;
   }
 `;

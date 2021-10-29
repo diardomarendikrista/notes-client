@@ -111,8 +111,8 @@ export default function Note() {
               </button>
             </div>
           </div>
-          <form onSubmit={(e) => handleSearch(e)}>
-            <div className="d-flex my-2" id="search-box">
+          <form onSubmit={(e) => handleSearch(e)} id="search-box">
+            <div className="d-flex my-2">
               <input
                 type="search"
                 className="form-control"
