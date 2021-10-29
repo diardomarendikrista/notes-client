@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { M_DEVICES_WIDTH } from "config/utils/constant";
 
 export const Wrapper = styled.div`
   position: relative;
@@ -39,3 +40,21 @@ export const Wrapper = styled.div`
     z-index: 1;
   }
 `;
+
+export const SelectWrapper = styled.div`
+  width: 150px;
+
+  .grid {
+    position: absolute;
+    margin-top: 5.5px;
+    margin-left: 8px;
+  }
+
+  select {
+    padding-left: 28px;
+  }
+  
+  @media (max-width: ${M_DEVICES_WIDTH}) {
+    display: none;
+  }
+`

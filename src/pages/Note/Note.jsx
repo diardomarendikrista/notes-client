@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Wrapper } from "./styles";
+import { Wrapper, SelectWrapper } from "./styles";
 import { Helmet } from "react-helmet-async";
-import { BsFillPlusSquareFill, BsSearch } from "react-icons/bs";
+import { BsFillPlusSquareFill, BsSearch, BsGrid } from "react-icons/bs";
 import Loader from "components/Loader/Loader";
-import CardNote from "components/CardNote";
+import CardNote from "components/CardNote/CardNote";
 import { fetchNotes, searchNoteAsync } from "store/actions/note";
 import { fetchProfile } from "store/actions/user";
 
@@ -16,6 +16,9 @@ export default function Note() {
 
   const [search, setSearch] = useState("");
   const [isSearchMode, setIsSearchMode] = useState(false);
+  const [settingView, setSettingView] = useState(
+    localStorage.getItem("setting_view") ?? "1"
+  );
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -52,14 +55,18 @@ export default function Note() {
     );
   };
 
+  // check local storage
   useEffect(() => {
-    // check local storage
     if (!localStorage.getItem("access_token")) {
       history.push("/");
     } else {
       // load notes
       if (!notes) dispatch(fetchNotes());
       if (!profile) dispatch(fetchProfile());
+    }
+
+    if (localStorage.getItem("setting_view")) {
+      setSettingView(localStorage.getItem("setting_view"));
     }
     // eslint-disable-next-line
   }, []);
@@ -126,6 +133,26 @@ export default function Note() {
               </button>
             </div>
           </form>
+          <div className="d-flex justify-content-end">
+            <SelectWrapper className="mb-2">
+              <div className="grid">
+                <BsGrid />
+              </div>
+              <select
+                className="form-select"
+                id="inputGroupSelect01"
+                value={settingView}
+                onChange={(e) => {
+                  setSettingView(e.target.value);
+                  localStorage.setItem("setting_view", e.target.value);
+                }}
+              >
+                <option value="3">3 lines</option>
+                <option value="2">2 lines</option>
+                <option value="1">1 line</option>
+              </select>
+            </SelectWrapper>
+          </div>
           <div className="d-flex flex-wrap justify-content-center">
             {!loadingNote ? (
               notes.length < 1 ? (
@@ -136,7 +163,9 @@ export default function Note() {
                 )
               ) : (
                 notes &&
-                notes.map((note) => <CardNote note={note} key={note.id} />)
+                notes.map((note) => (
+                  <CardNote note={note} key={note.id} view={settingView} />
+                ))
               )
             ) : (
               <Loader />
