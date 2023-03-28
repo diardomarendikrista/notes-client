@@ -163,8 +163,8 @@ export default function Note() {
                 )
               ) : (
                 notes &&
-                notes.map((note) => (
-                  <CardNote note={note} key={note.id} view={settingView} />
+                notes.map((note, i) => (
+                  <CardNote note={note} key={i} view={settingView} />
                 ))
               )
             ) : (

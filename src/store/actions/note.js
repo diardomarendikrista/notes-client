@@ -114,10 +114,10 @@ export function updateNoteAsync(updateNote, notes) {
       // console.log(data, "updated data");
 
       // anti refetch club
-      const newData = notes.map(item => {
-        if (item.id === data.data.id) return data.data
-        else return item
-      })
+      const newData = notes.map((item) => {
+        if (item.id === data.data.id) return data.data;
+        else return item;
+      });
       dispatch(setNotes(newData));
 
       Swal.fire(

@@ -32,14 +32,14 @@ export default function CardNote({ note, view }) {
 
   return (
     <Wrapper customWidth={customWidth}>
-      <div onClick={() => detailNote(note.id)}>
+      <div onClick={() => detailNote(note?.id)}>
         <div>
-          <p className="text-title text-start">{capitalize(note.title)}</p>
+          <p className="text-title text-start">{capitalize(note?.title)}</p>
         </div>
         <div className="text-note-wrapper">
           <p
             className="p-note text-start"
-            dangerouslySetInnerHTML={{ __html: note.note }}
+            dangerouslySetInnerHTML={{ __html: note?.note }}
           />
         </div>
         <div className="text-readmore text-start">
@@ -48,12 +48,12 @@ export default function CardNote({ note, view }) {
       </div>
       <div className="btn-div">
         <BsPencilSquare
-          onClick={() => editNote(note.id)}
+          onClick={() => editNote(note?.id)}
           className="btn-edit me-2"
           size="18px"
         />
         <BsXLg
-          onClick={() => deleteNote(note.id)}
+          onClick={() => deleteNote(note?.id)}
           className="btn-delete"
           size="16px"
         />
