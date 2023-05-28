@@ -1,7 +1,7 @@
 import "./NoteAdd.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
@@ -22,7 +22,7 @@ export default function NoteAdd() {
   const [status, setStatus] = useState("private");
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchEditNote();
@@ -48,12 +48,12 @@ export default function NoteAdd() {
     };
     // console.log(updateNote);
     await dispatch(updateNoteAsync(updateNote, notes));
-    if (originPage === "home") history.push("/notes");
-    if (originPage === "detail") history.push("/notes/show/" + updateNote.id);
+    if (originPage === "home") navigate("/notes");
+    if (originPage === "detail") navigate("/notes/show/" + updateNote.id);
   };
 
   const toHome = () => {
-    history.push("/notes");
+    navigate("/notes");
   };
 
   return (

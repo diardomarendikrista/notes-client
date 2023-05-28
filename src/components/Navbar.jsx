@@ -1,13 +1,13 @@
 import "./Navbar.css";
-import React, { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Navbar, Nav, Form, NavDropdown } from "react-bootstrap";
 import Logo from "../assets/img/logo.png";
 import Swal from "sweetalert2";
 
 export default function Navibar() {
   const [menuHidden, setMenuHidden] = useState(true);
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
@@ -17,19 +17,19 @@ export default function Navibar() {
 
   const goHome = (event) => {
     event.preventDefault();
-    history.push("/notes");
+    navigate("/notes");
   };
 
   const logout = (event) => {
     event.preventDefault();
     localStorage.clear();
-    history.push("/");
+    navigate("/");
     Swal.fire("Logout successfully", "You are already logged out", "success");
   };
 
   const about = (event) => {
     event.preventDefault();
-    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 1.02<br /><a href='https://diardokrista.web.app/' target='_blank'>diardokrista.web.app</a>", "info");
+    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 2.00<br /><a href='https://diardokrista.web.app/' target='_blank'>diardokrista.web.app</a>", "info");
   };
 
   return (

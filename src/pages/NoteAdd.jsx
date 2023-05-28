@@ -1,7 +1,7 @@
 import "./NoteAdd.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
 
@@ -20,10 +20,10 @@ export default function NoteAdd() {
   const [status, setStatus] = useState("private");
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const toHome = () => {
-    history.push("/notes");
+    navigate("/notes");
   };
 
   const createNewNote = async (event) => {
@@ -36,7 +36,7 @@ export default function NoteAdd() {
     };
     // console.log(newNote);
     await dispatch(newNoteAsync(newNote, notes));
-    history.push("/notes");
+    navigate("/notes");
   };
 
   return (

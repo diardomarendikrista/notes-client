@@ -1,7 +1,0 @@
-{
-  "name": "Petek Notes",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

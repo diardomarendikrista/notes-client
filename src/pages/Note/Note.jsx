@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Wrapper, SelectWrapper } from "./styles";
 import { Helmet } from "react-helmet-async";
 import { BsFillPlusSquareFill, BsSearch, BsGrid } from "react-icons/bs";
@@ -20,7 +20,7 @@ export default function Note() {
     localStorage.getItem("setting_view") ?? "1"
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
@@ -34,7 +34,7 @@ export default function Note() {
   };
 
   const addNote = () => {
-    history.push("/notes/add");
+    navigate("/notes/add");
   };
 
   const noNote = () => {
@@ -58,7 +58,7 @@ export default function Note() {
   // check local storage
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
-      history.push("/");
+      navigate("/");
     } else {
       // load notes
       if (!notes) dispatch(fetchNotes());

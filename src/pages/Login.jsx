@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { setFormType, signin } from "../store/actions/user";
 import Swal from "sweetalert2";
@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const login = async (event) => {
     event.preventDefault();
@@ -22,7 +22,7 @@ export default function Login() {
       const hasil = await dispatch(signin(user));
       if (hasil) {
         setEmail("");
-        history.push("/notes");
+        navigate("/notes");
       }
     } else {
       Swal.fire("please fill email & password", "", "info");
@@ -46,7 +46,7 @@ export default function Login() {
             onChange={(event) => setEmail(event.target.value)}
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We will never share your email with anyone else.
           </Form.Text>
         </Form.Group>
 
@@ -69,7 +69,7 @@ export default function Login() {
           type="button"
           className="btn-to-another"
         >
-          Don't Have Account
+          Don t Have Account
         </Button>
       </Form>
     </>

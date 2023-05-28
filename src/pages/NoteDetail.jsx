@@ -1,7 +1,7 @@
 import "./NoteAdd.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "react-bootstrap";
 import Loader from "components/Loader/Loader";
@@ -21,7 +21,7 @@ export default function NoteDetail() {
   const [status, setStatus] = useState("private");
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const fetchNote = async () => {
     const data = await dispatch(fetchNoteAsync(id));
@@ -33,11 +33,11 @@ export default function NoteDetail() {
 
   const editNote = (id) => {
     dispatch(setOriginPage("detail"));
-    history.push("/notes/edit/" + id);
+    navigate("/notes/edit/" + id);
   };
 
   const toHome = () => {
-    history.push("/notes");
+    navigate("/notes");
   };
 
   useEffect(() => {

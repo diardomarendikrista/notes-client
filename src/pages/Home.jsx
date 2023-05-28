@@ -1,7 +1,7 @@
 import "./Home.css";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
 import Login from "./Login";
@@ -9,14 +9,14 @@ import Register from "./Register";
 
 export default function Home() {
   const formType = useSelector((state) => state.user.formType);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // check local storage
     if (localStorage.getItem("access_token")) {
-      history.push("/notes");
+      navigate("/notes");
     }
-  }, [history]);
+  }, [navigate]);
 
   return (
     <Container fluid>

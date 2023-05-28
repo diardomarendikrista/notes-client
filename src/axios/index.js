@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axios } from "@bundled-es-modules/axios";
 
 const instance = axios.create({
   // baseURL: "http://139.228.174.42:4000/",

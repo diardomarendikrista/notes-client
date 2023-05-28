@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "./styles.js";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsXLg, BsPencilSquare } from "react-icons/bs";
 import { capitalize } from "helpers/globalFunctions";
 import { deleteNoteAsync, setOriginPage } from "store/actions/note";
@@ -15,15 +15,15 @@ export default function CardNote({ note, view }) {
   if (view === "1") customWidth = "100%";
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const detailNote = (id) => {
-    history.push("/notes/show/" + id);
+    navigate("/notes/show/" + id);
   };
 
   const editNote = (id) => {
     dispatch(setOriginPage("home"));
-    history.push("/notes/edit/" + id);
+    navigate("/notes/edit/" + id);
   };
 
   const deleteNote = (id) => {
