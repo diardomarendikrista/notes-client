@@ -2,14 +2,9 @@ import React from "react";
 import "./App.css";
 import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./Layouts/index";
-// import Home from "./pages/Home";
-// import Note from "./pages/Notes";
-// import NoteAdd from "./pages/Notes/Add";
-// import NoteEdit from "./pages/Notes/Edit";
 import Loader from "components/Loader/Loader";
-// import NoteDetail from "./pages/Notes/Detail";
 
+const Layout = lazy(() => import("./Layouts/index"));
 const Home = lazy(() => import("./pages/Home"));
 const Note = lazy(() => import("./pages/Notes"));
 const NoteAdd = lazy(() => import("./pages/Notes/Add"));
