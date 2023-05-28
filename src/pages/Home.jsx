@@ -1,7 +1,7 @@
 import "./Home.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
 import Login from "./Login";
@@ -10,6 +10,10 @@ import Register from "./Register";
 export default function Home() {
   const formType = useSelector((state) => state.user.formType);
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  console.log(location, "location");
 
   useEffect(() => {
     // check local storage

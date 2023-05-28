@@ -4630,7 +4630,7 @@ workbox-sw@6.6.0:
   resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-6.6.0.tgz#e07d85a8af3a4ae311ba6e45d179ecaa402d4983"
   integrity sha512-R2IkwDokbtHUE4Kus8pKO5+VkPHD2oqTgl+XJwh4zbF1HyjAbgNmK/FneZHVU7p03XUt9ICfuGDYISWG9qV/CQ==
 
-workbox-window@6.6.0, workbox-window@^6.5.4, workbox-window@^6.6.0:
+workbox-window@6.6.0, workbox-window@^6.5.4:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/workbox-window/-/workbox-window-6.6.0.tgz#a1b738340ea83323978ea9acc8f527c9240656d6"
   integrity sha512-L4N9+vka17d16geaJXXRjENLFldvkWy7JyGxElRD0JvBxvFEd8LOhr+uXCcar/NzAmIBRv9EZ+M+Qr4mOoBITw==

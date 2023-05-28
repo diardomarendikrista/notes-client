@@ -12,14 +12,14 @@ export const Wrapper = styled.div`
   padding: 8px 10px;
   position: relative;
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
-  
-	${({ customWidth }) =>
-		customWidth &&
-		css`
-			width: ${customWidth};
-      margin-right: ${({ customWidth }) => (customWidth === "100%" ? '0px' : '5px')};
-		`}
 
+  ${({ customWidth }) =>
+    customWidth &&
+    css`
+      width: ${customWidth};
+      margin-right: ${({ customWidth }) =>
+        customWidth === "100%" ? "0px" : "5px"};
+    `}
 
   :hover {
     background-color: azure;

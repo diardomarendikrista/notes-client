@@ -29,7 +29,11 @@ export default function Navibar() {
 
   const about = (event) => {
     event.preventDefault();
-    Swal.fire("Petek Note App", "by: Diardo.<br /> ver: 2.00<br /><a href='https://diardokrista.web.app/' target='_blank'>diardokrista.web.app</a>", "info");
+    Swal.fire(
+      "Petek Note App",
+      `by: Diardo.<br /> ver: 2.00<br /><a href="https://diardokrista.web.app/" target="_blank">diardokrista.web.app</a>`,
+      "info"
+    );
   };
 
   return (

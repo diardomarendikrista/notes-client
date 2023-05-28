@@ -5,47 +5,56 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), jsconfigPaths(), VitePWA({ manifest: manifest })],
-});
-
-const manifest = {
-  name: "Petek Notes",
-  short_name: "Petek Notes",
-  description: "Simple Notes Application",
-  start_url: "./index.html",
-  display: "standalone",
-  background_color: "#fff",
-  theme_color: "#4caf50",
-  icons: [
-    {
-      src: "/icons/icon.png",
-      sizes: "48x48",
-      type: "image/png",
-    },
-    {
-      src: "/icons/icon.png",
-      sizes: "72x72",
-      type: "image/png",
-    },
-    {
-      src: "/icons/icon.png",
-      sizes: "96x96",
-      type: "image/png",
-    },
-    {
-      src: "/icons/icon.png",
-      sizes: "144x144",
-      type: "image/png",
-    },
-    {
-      src: "/icons/icon.png",
-      sizes: "168x168",
-      type: "image/png",
-    },
-    {
-      src: "/icons/icon.png",
-      sizes: "192x192",
-      type: "image/png",
-    },
+  plugins: [
+    react(),
+    jsconfigPaths(),
+    VitePWA({
+      injectRegister: "auto",
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+      manifest: {
+        name: "Petek Notes",
+        short_name: "Petek Notes",
+        description: "Simple Notes Application",
+        theme_color: "#ffffff",
+        icons: [
+          {
+            src: "icon-48.png",
+            sizes: "48x48",
+            type: "image/png",
+          },
+          {
+            src: "icon-72.png",
+            sizes: "72x72",
+            type: "image/png",
+          },
+          {
+            src: "icon-96.png",
+            sizes: "96x96",
+            type: "image/png",
+          },
+          {
+            src: "icon-144.png",
+            sizes: "144x144",
+            type: "image/png",
+          },
+          {
+            src: "icon-192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+          {
+            src: "icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ],
+      },
+    }),
   ],
-};
+});

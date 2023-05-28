@@ -107,7 +107,7 @@ export default function Note() {
         <Wrapper>
           <div className="d-lg-flex justify-content-center mt-3">
             <div>
-              <h3>{profile.name}'s note</h3>
+              <h3>{profile.name}`s note</h3>
             </div>
             <div id="search-box-limit-top">
               <button

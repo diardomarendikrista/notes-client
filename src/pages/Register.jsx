@@ -26,7 +26,7 @@ export default function Register() {
         setPasswordRepeat("");
       }
     } else {
-      alert("Password didn't match");
+      alert("Password didn t match");
       return false;
     }
   };
@@ -58,7 +58,7 @@ export default function Register() {
             onChange={(event) => setEmail(event.target.value)}
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We will never share your email with anyone else.
           </Form.Text>
         </Form.Group>
 
@@ -79,8 +79,7 @@ export default function Register() {
             onChange={(event) => setPasswordRepeat(event.target.value)}
           />
           <Form.Text className="text-muted">
-            Password section already well encrypted and will
-            never leak.
+            Password section already well encrypted and will never leak.
           </Form.Text>
         </Form.Group>
 
