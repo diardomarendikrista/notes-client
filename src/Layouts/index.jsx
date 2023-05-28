@@ -1,9 +1,9 @@
 import Navbar from "components/Navbar";
 
-export default function Layout({ children }) {
+export default function Layout({ children, mainLoading }) {
   return (
     <>
-      <Navbar />
+      <Navbar mainLoading={mainLoading} />
       {children}
     </>
   );

@@ -1,8 +1,9 @@
 import Loader from "react-loader-spinner";
+import { Wrapper } from "./styles";
 
-export default function Loading() {
+export default function Loading({ center }) {
   return (
-    <div className="d-flex justify-content-center mt-5">
+    <Wrapper center={center}>
       <Loader
         type="Oval"
         color="#00BFFF"
@@ -10,6 +11,6 @@ export default function Loading() {
         width={75}
         timeout={300000} //3 secs
       />
-    </div>
+    </Wrapper>
   );
 }
