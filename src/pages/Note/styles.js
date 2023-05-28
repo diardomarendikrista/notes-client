@@ -53,8 +53,8 @@ export const SelectWrapper = styled.div`
   select {
     padding-left: 28px;
   }
-  
+
   @media (max-width: ${M_DEVICES_WIDTH}) {
     display: none;
   }
-`
+`;

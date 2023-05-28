@@ -8,6 +8,7 @@ import Loader from "components/Loader/Loader";
 import CardNote from "components/CardNote/CardNote";
 import { fetchNotes, searchNoteAsync } from "store/actions/note";
 import { fetchProfile } from "store/actions/user";
+import QuitButton from "components/QuitButton";
 
 export default function Note() {
   const { profile } = useSelector((state) => state.user);
@@ -171,6 +172,7 @@ export default function Note() {
               <Loader />
             )}
           </div>
+          <QuitButton />
         </Wrapper>
       ) : (
         <Loader />

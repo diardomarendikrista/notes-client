@@ -1,7 +1,10 @@
 import { defineConfig } from "vite";
+import dns from "dns";
 import react from "@vitejs/plugin-react";
 import jsconfigPaths from "vite-jsconfig-paths";
 import { VitePWA } from "vite-plugin-pwa";
+
+dns.setDefaultResultOrder("verbatim");
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -54,6 +57,10 @@ export default defineConfig({
             purpose: "any maskable",
           },
         ],
+      },
+      server: {
+        host: "localhost",
+        port: 3000,
       },
     }),
   ],
