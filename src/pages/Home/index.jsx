@@ -1,11 +1,11 @@
-import "./Home.css";
+import "./styles.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "pages/Login";
+import Register from "pages/Register";
 
 export default function Home() {
   const formType = useSelector((state) => state.user.formType);

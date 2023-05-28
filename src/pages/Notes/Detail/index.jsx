@@ -1,4 +1,4 @@
-import "./NoteAdd.css";
+import "../Add/styles.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "react-bootstrap";
 import Loader from "components/Loader/Loader";
 
-import { fetchNoteAsync, setOriginPage } from "../store/actions/note";
+import { fetchNoteAsync, setOriginPage } from "../../../store/actions/note";
 import { capitalize } from "helpers/globalFunctions";
 
 export default function NoteDetail() {

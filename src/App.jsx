@@ -2,10 +2,10 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layouts/index";
 import Home from "./pages/Home";
-import Note from "./pages/Note/Note";
-import NoteAdd from "./pages/NoteAdd";
-import NoteEdit from "./pages/NoteEdit";
-import NoteDetail from "./pages/NoteDetail";
+import Note from "./pages/Notes";
+import NoteAdd from "./pages/Notes/Add";
+import NoteEdit from "./pages/Notes/Edit";
+import NoteDetail from "./pages/Notes/Detail";
 
 const router = createBrowserRouter([
   {

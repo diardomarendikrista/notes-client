@@ -1,11 +1,11 @@
-import "./NoteAdd.css";
+import "./styles.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
 
-import { newNoteAsync } from "../store/actions/note";
+import { newNoteAsync } from "store/actions/note";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";

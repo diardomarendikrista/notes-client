@@ -1,4 +1,4 @@
-import "./NoteAdd.css";
+import "../Add/styles.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 
-import { updateNoteAsync, fetchNoteAsync } from "../store/actions/note";
+import { updateNoteAsync, fetchNoteAsync } from "../../../store/actions/note";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
