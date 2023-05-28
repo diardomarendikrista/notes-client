@@ -13,6 +13,11 @@ export const Wrapper = styled.div`
   position: relative;
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.3);
 
+  a {
+    text-decoration: none;
+    color: unset;
+  }
+
   ${({ customWidth }) =>
     customWidth &&
     css`

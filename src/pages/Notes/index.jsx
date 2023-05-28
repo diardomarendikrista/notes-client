@@ -5,7 +5,7 @@ import { Wrapper, SelectWrapper } from "./styles";
 import { Helmet } from "react-helmet-async";
 import { BsFillPlusSquareFill, BsSearch, BsGrid } from "react-icons/bs";
 import Loader from "components/Loader/Loader";
-import CardNote from "components/CardNote/CardNote";
+import MainCard from "components/MainCard";
 import { fetchNotes, searchNoteAsync } from "store/actions/note";
 import { fetchProfile } from "store/actions/user";
 
@@ -79,7 +79,7 @@ export default function Note() {
     // eslint-disable-next-line
   }, [search]);
 
-  window.addEventListener("scroll", (event) => {
+  window.addEventListener("scroll", () => {
     let targetSticky = document.getElementById("search-box");
     let limitStickyTop = document.getElementById("search-box-limit-top");
     let stickyTop = limitStickyTop && limitStickyTop.offsetTop;
@@ -112,7 +112,7 @@ export default function Note() {
             <div id="search-box-limit-top">
               <button
                 onClick={() => addNote()}
-                className="btn btn-primary ms-lg-2 ms-sm-1 w-100"
+                className="btn btn-primary ms-lg-2 w-100"
               >
                 <BsFillPlusSquareFill /> new note
               </button>
@@ -122,13 +122,13 @@ export default function Note() {
             <div className="d-flex my-2">
               <input
                 type="search"
-                className="form-control"
+                className="form-control search-input"
                 id="exampleInputEmail1"
                 placeholder="Search"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button type="submit" className="btn btn-info pt-0">
+              <button type="submit" className="btn btn-info pt-0 search-button">
                 <BsSearch />
               </button>
             </div>
@@ -164,7 +164,7 @@ export default function Note() {
               ) : (
                 notes &&
                 notes.map((note, i) => (
-                  <CardNote note={note} key={i} view={settingView} />
+                  <MainCard note={note} key={i} view={settingView} />
                 ))
               )
             ) : (

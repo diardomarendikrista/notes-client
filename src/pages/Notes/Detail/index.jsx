@@ -41,7 +41,15 @@ export default function NoteDetail() {
   };
 
   useEffect(() => {
-    fetchNote();
+    let mounted = true;
+
+    if (mounted) {
+      fetchNote();
+    }
+
+    return function cleanup() {
+      mounted = false;
+    };
     // eslint-disable-next-line
   }, []);
 

@@ -39,6 +39,15 @@ export const Wrapper = styled.div`
     top: 5px;
     z-index: 1;
   }
+
+  .search-input {
+    border-radius: 0.375rem 0 0 0.375rem;
+    border-right: none;
+  }
+
+  .search-button {
+    border-radius: 0 0.375rem 0.375rem 0;
+  }
 `;
 
 export const SelectWrapper = styled.div`
