@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     jsconfigPaths(),
     VitePWA({
-      injectRegister: "auto",
+      // injectRegister: "auto",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
         name: "Petek Notes",
