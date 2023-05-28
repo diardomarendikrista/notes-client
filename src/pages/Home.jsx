@@ -1,16 +1,14 @@
 import "./Home.css";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Container, Row, Col } from "react-bootstrap";
 import Login from "./Login";
 import Register from "./Register";
-import QuitButton from "components/QuitButton";
 
 export default function Home() {
   const formType = useSelector((state) => state.user.formType);
-  const navigate = useNavigate();
 
   const location = useLocation();
 
@@ -19,9 +17,9 @@ export default function Home() {
   useEffect(() => {
     // check local storage
     if (localStorage.getItem("access_token")) {
-      navigate("/notes");
+      window.location.replace("/notes");
     }
-  }, [navigate]);
+  }, []);
 
   return (
     <Container fluid>
@@ -30,8 +28,6 @@ export default function Home() {
         <title>Petek Note App</title>
         <link rel="Note app" href="" />
       </Helmet>
-
-      <QuitButton variant="home" />
 
       <div className="home">
         <Row>
