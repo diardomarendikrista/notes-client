@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import { setFormType, signin } from "../store/actions/user";
+import { setFormType, signin } from "store/actions/user";
 import Swal from "sweetalert2";
 
 export default function Login() {
@@ -22,7 +22,7 @@ export default function Login() {
       const hasil = await dispatch(signin(user));
       if (hasil) {
         setEmail("");
-        navigate("/notes");
+        navigate("/dashboard");
       }
     } else {
       Swal.fire("please fill email & password", "", "info");

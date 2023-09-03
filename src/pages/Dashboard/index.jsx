@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Wrapper, SelectWrapper } from "./styles";
+import { Wrapper, TitleWrapper, ButtonWrapper, SelectWrapper } from "./styles";
 import { Helmet } from "react-helmet-async";
 import { BsFillPlusSquareFill, BsSearch, BsGrid } from "react-icons/bs";
 import Loader from "components/Loader/Loader";
@@ -34,7 +34,11 @@ export default function Note() {
   };
 
   const addNote = () => {
-    navigate("/notes/add");
+    navigate("notes/add");
+  };
+
+  const addTodo = () => {
+    navigate("todo/add");
   };
 
   const noNote = () => {
@@ -105,19 +109,27 @@ export default function Note() {
 
       {!loadingGlobal ? (
         <Wrapper>
-          <div className="d-lg-flex justify-content-center mt-3">
+          <TitleWrapper>
             <div>
               <h3>{profile.name}`s note</h3>
             </div>
-            <div id="search-box-limit-top">
+            <ButtonWrapper>
               <button
                 onClick={() => addNote()}
-                className="btn btn-primary ms-lg-2 w-100"
+                className="btn btn-primary w-100"
               >
                 <BsFillPlusSquareFill /> new note
               </button>
-            </div>
-          </div>
+            </ButtonWrapper>
+            <ButtonWrapper>
+              <button
+                onClick={() => addTodo()}
+                className="btn btn-warning w-100"
+              >
+                <BsFillPlusSquareFill /> new todo
+              </button>
+            </ButtonWrapper>
+          </TitleWrapper>
           <form onSubmit={(e) => handleSearch(e)} id="search-box">
             <div className="d-flex my-2">
               <input

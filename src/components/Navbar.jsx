@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Navbar, Nav, Form, NavDropdown } from "react-bootstrap";
-import Logo from "../assets/img/logo.png";
+import Logo from "assets/img/logo.png";
 import Swal from "sweetalert2";
 
 export default function Navibar() {
@@ -17,7 +17,7 @@ export default function Navibar() {
 
   const goHome = (event) => {
     event.preventDefault();
-    navigate("/notes");
+    navigate("/dashboard");
   };
 
   const logout = (event) => {

@@ -1,4 +1,3 @@
-import "./styles.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ export default function NoteAdd() {
   const navigate = useNavigate();
 
   const toHome = () => {
-    navigate("/notes");
+    navigate("/dashboard");
   };
 
   const createNewNote = async (event) => {
@@ -36,7 +35,7 @@ export default function NoteAdd() {
     };
     // console.log(newNote);
     await dispatch(newNoteAsync(newNote, notes));
-    navigate("/notes");
+    navigate("/dashboard");
   };
 
   return (

@@ -6,10 +6,12 @@ import Loader from "components/Loader/Loader";
 
 const Layout = lazy(() => import("./Layouts/index"));
 const Home = lazy(() => import("./pages/Home"));
-const Note = lazy(() => import("./pages/Notes"));
-const NoteAdd = lazy(() => import("./pages/Notes/Add"));
-const NoteEdit = lazy(() => import("./pages/Notes/Edit"));
-const NoteDetail = lazy(() => import("./pages/Notes/Detail"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const NoteAdd = lazy(() => import("./pages/Dashboard/Notes/Add"));
+const NoteEdit = lazy(() => import("./pages/Dashboard/Notes/Edit"));
+const NoteDetail = lazy(() => import("./pages/Dashboard/Notes/Detail"));
+
+const TodoAdd = lazy(() => import("./pages/Dashboard/Todo/Add"));
 
 const router = createBrowserRouter([
   {
@@ -21,15 +23,15 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/notes",
+    path: "/dashboard",
     element: (
       <Layout>
-        <Note />
+        <Dashboard />
       </Layout>
     ),
   },
   {
-    path: "/notes/show/:id",
+    path: "notes/show/:id",
     element: (
       <Layout>
         <NoteDetail />
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/notes/edit/:id",
+    path: "/dashboard/notes/edit/:id",
     element: (
       <Layout>
         <NoteEdit />
@@ -45,10 +47,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/notes/add",
+    path: "/dashboard/notes/add",
     element: (
       <Layout>
         <NoteAdd />
+      </Layout>
+    ),
+  },
+  {
+    path: "/dashboard/todo/add",
+    element: (
+      <Layout>
+        <TodoAdd />
       </Layout>
     ),
   },

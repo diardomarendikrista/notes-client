@@ -7,10 +7,14 @@ export const Wrapper = styled.div`
   margin: auto;
 
   body {
-    /* background-image: url("../assets/img/bg.jpg");
+    /* background-image: url("assets/img/bg.jpg");
   background-position: center;
   background-size: cover; */
     background-color: #fff;
+  }
+
+  .invisible {
+    display: none;
   }
 
   .div-no-note {
@@ -47,6 +51,25 @@ export const Wrapper = styled.div`
 
   .search-button {
     border-radius: 0 0.375rem 0.375rem 0;
+  }
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+
+  @media (max-width: ${M_DEVICES_WIDTH}) {
+    flex-direction: column;
+    gap: 4px;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  @media (max-width: ${M_DEVICES_WIDTH}) {
+    width: 100%;
   }
 `;
 

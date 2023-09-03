@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     // check local storage
     if (localStorage.getItem("access_token")) {
-      window.location.replace("/notes");
+      window.location.replace("/dashboard");
     } else {
       setFirstLoad(false);
     }

@@ -13,6 +13,7 @@ export default defineConfig({
     jsconfigPaths(),
     VitePWA({
       // injectRegister: "auto",
+      registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
         name: "Petek Notes",
@@ -59,7 +60,7 @@ export default defineConfig({
         ],
       },
       server: {
-        host: "localhost",
+        host: "host",
         port: 3000,
       },
     }),
