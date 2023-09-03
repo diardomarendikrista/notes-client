@@ -121,14 +121,14 @@ export default function Note() {
                 <BsFillPlusSquareFill /> new note
               </button>
             </ButtonWrapper>
-            <ButtonWrapper>
+            {/* <ButtonWrapper>
               <button
                 onClick={() => addTodo()}
                 className="btn btn-warning w-100"
               >
                 <BsFillPlusSquareFill /> new todo
               </button>
-            </ButtonWrapper>
+            </ButtonWrapper> */}
           </TitleWrapper>
           <form onSubmit={(e) => handleSearch(e)} id="search-box">
             <div className="d-flex my-2">
