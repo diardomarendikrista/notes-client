@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Wrapper, WrapperMenu, DeleteButton, UpDownButton } from "./styles";
+import {
+  Wrapper,
+  WrapperMenu,
+  TodoWrapper,
+  DeleteButton,
+  UpDownButton,
+} from "./styles";
 import { LuArrowDownSquare, LuArrowUpSquare } from "react-icons/lu";
 import { Form } from "react-bootstrap";
 
@@ -10,6 +16,7 @@ export default function TodoCard({
   onDelete,
   onChangePosition,
   onDone,
+  todoCheckStyle,
 }) {
   const [canUp, setCanUp] = useState(true);
   const [canDown, setCanDown] = useState(true);
@@ -38,18 +45,34 @@ export default function TodoCard({
 
   return (
     <Wrapper>
-      <div>{data?.todo}</div>
+      <TodoWrapper>
+        {data?.todo}
+        {todoCheckStyle === 1 && (
+          <Form.Check
+            type={"checkbox"}
+            label={``}
+            id={`checkbox-${data.todo}`}
+            onChange={(e) => {
+              onDone(index, e.target.checked);
+              setIsDone(e.target.checked);
+            }}
+            checked={isDone}
+          />
+        )}
+      </TodoWrapper>
       <WrapperMenu>
-        <Form.Check
-          type={"checkbox"}
-          label={``}
-          id={`disabled-default-checkbox`}
-          onChange={(e) => {
-            onDone(index, e.target.checked);
-            setIsDone(e.target.checked);
-          }}
-          checked={isDone}
-        />
+        {todoCheckStyle === 0 && (
+          <Form.Check
+            type={"checkbox"}
+            label={``}
+            id={`checkbox-${data.todo}`}
+            onChange={(e) => {
+              onDone(index, e.target.checked);
+              setIsDone(e.target.checked);
+            }}
+            checked={isDone}
+          />
+        )}
         {onChangePosition && (
           <>
             <UpDownButton

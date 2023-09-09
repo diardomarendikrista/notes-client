@@ -18,6 +18,12 @@ export const WrapperMenu = styled.div`
   cursor: pointer;
 `;
 
+export const TodoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+`;
+
 export const UpDownButton = styled.div`
   color: ${({ disabled }) => (disabled ? "#adb5bd" : "#0dcaf0")};
   display: flex;

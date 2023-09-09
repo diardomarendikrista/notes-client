@@ -22,6 +22,8 @@ export default function FormTodo() {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
 
+  const [todoCheckStyle, setTodoCheckStyle] = useState(0);
+
   const query = new URLSearchParams(useLocation().search);
   const { id } = useParams();
 
@@ -236,7 +238,19 @@ export default function FormTodo() {
               )}
             </Form.Group>
 
-            <h5>Your To-do :</h5>
+            <div className="d-flex align-items-center">
+              <h5>Your To-do :</h5>
+              <Form.Check
+                className="ms-2 mb-1"
+                type="switch"
+                id={`disabled-default-${"check1"}`}
+                checked={todoCheckStyle === 0}
+                onChange={(e) => {
+                  if (e.target.checked) setTodoCheckStyle(0);
+                  else setTodoCheckStyle(1);
+                }}
+              />
+            </div>
             <TodoCardWrapper>
               {loadingDetail &&
                 [0, 1].map((i) => <Skeleton height={31} key={i} />)}
@@ -253,6 +267,7 @@ export default function FormTodo() {
                       handleChangePosition(index, upOrDown)
                     }
                     onDone={(index, value) => handleDone(index, value)}
+                    todoCheckStyle={todoCheckStyle}
                   />
                 ))}
             </TodoCardWrapper>
