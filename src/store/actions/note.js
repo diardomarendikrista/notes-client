@@ -76,7 +76,7 @@ export function searchNoteAsync(keyword) {
   };
 }
 
-export function newNoteAsync(newNote, notes) {
+export function newNoteAsync(newNote, notes, navigate) {
   return async (dispatch) => {
     try {
       const headers = {
@@ -88,11 +88,16 @@ export function newNoteAsync(newNote, notes) {
       const newData = [data.data, ...notes];
       dispatch(setNotes(newData));
 
-      Swal.fire(
-        "Success!",
-        `note ${data.data.title} has been created!`,
-        "success"
-      );
+      if (navigate) {
+        // only on todo
+        navigate(`/dashboard/todo/edit/${data.data.id}?from=add`);
+      } else {
+        Swal.fire(
+          "Success!",
+          `note ${data.data.title} has been created!`,
+          "success"
+        );
+      }
     } catch (error) {
       // console.log(error.response);
       if (!error.response) connectionDown();
@@ -101,7 +106,7 @@ export function newNoteAsync(newNote, notes) {
   };
 }
 
-export function updateNoteAsync(updateNote, notes) {
+export function updateNoteAsync(updateNote, notes, type) {
   return async (dispatch) => {
     try {
       const headers = {
@@ -113,18 +118,28 @@ export function updateNoteAsync(updateNote, notes) {
       // console.log(notes, "data notes");
       // console.log(data, "updated data");
 
-      // anti refetch club
-      const newData = notes.map((item) => {
-        if (item.id === data.data.id) return data.data;
-        else return item;
-      });
-      dispatch(setNotes(newData));
+      if (notes) {
+        // anti refetch club
+        const newData = notes?.map((item) => {
+          if (item?.id === data?.data?.id) return data?.data;
+          else return item;
+        });
+        dispatch(setNotes(newData));
+      }
 
-      Swal.fire(
-        "Success!",
-        `note ${data.data.title} has been edited!`,
-        "success"
-      );
+      if (type === "todo") {
+        Swal.fire(
+          "Success!",
+          `todo ${data.data.title} has been updated!`,
+          "success"
+        );
+      } else {
+        Swal.fire(
+          "Success!",
+          `note ${data.data.title} has been updated!`,
+          "success"
+        );
+      }
     } catch (error) {
       // console.log(error.response);
       if (!error.response) connectionDown();

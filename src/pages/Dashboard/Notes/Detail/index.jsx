@@ -7,6 +7,7 @@ import Loader from "components/Loader/Loader";
 
 import { fetchNoteAsync, setOriginPage } from "store/actions/note";
 import { capitalize } from "helpers/globalFunctions";
+import { BsCheckLg, BsXLg } from "react-icons/bs";
 
 export default function NoteDetail() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ export default function NoteDetail() {
 
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
+  const [type, setType] = useState("");
   const [tag, setTag] = useState("");
   // eslint-disable-next-line
   const [status, setStatus] = useState("private");
@@ -28,15 +30,40 @@ export default function NoteDetail() {
     setNote(data.note);
     setTag(data.tag);
     setStatus(data.status);
+    setType(data.type);
   };
 
   const editNote = (id) => {
     dispatch(setOriginPage("detail"));
-    navigate("/dashboard/notes/edit/" + id);
+    if (type === "todo") {
+      navigate("/dashboard/todo/edit/" + id);
+    } else {
+      navigate("/dashboard/notes/edit/" + id);
+    }
   };
 
   const toHome = () => {
     navigate("/dashboard");
+  };
+
+  const renderTodo = (rawData) => {
+    const data = JSON.parse(rawData);
+    console.log(data, "data");
+    return (
+      <div>
+        {data?.length > 0 &&
+          data?.map((item, i) => (
+            <div key={i}>
+              {item?.todo}{" "}
+              {item?.done ? (
+                <BsCheckLg className="text-success" />
+              ) : (
+                <BsXLg className="text-danger" />
+              )}
+            </div>
+          ))}
+      </div>
+    );
   };
 
   useEffect(() => {
@@ -70,7 +97,11 @@ export default function NoteDetail() {
             <b>{capitalize(title)}</b>
           </h3>
           <div className="text-wrap text-break">
-            <p dangerouslySetInnerHTML={{ __html: note }} className="mb-2" />
+            {type === "todo" ? (
+              renderTodo(note)
+            ) : (
+              <p dangerouslySetInnerHTML={{ __html: note }} className="mb-2" />
+            )}
           </div>
           <hr />
           <p className="mb-3 text-wrap text-break">

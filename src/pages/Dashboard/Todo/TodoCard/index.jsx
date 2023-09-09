@@ -16,6 +16,7 @@ export default function TodoCard({
 }) {
   const [canUp, setCanUp] = useState(true);
   const [canDown, setCanDown] = useState(true);
+  const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
     if (index <= 0) {
@@ -30,6 +31,14 @@ export default function TodoCard({
     }
   }, [index, dataList]);
 
+  useEffect(() => {
+    if (data?.done) {
+      setIsDone(true);
+    } else {
+      setIsDone(false);
+    }
+  }, [data]);
+
   return (
     <Wrapper>
       <div>{data?.todo}</div>
@@ -38,7 +47,11 @@ export default function TodoCard({
           type={"checkbox"}
           label={``}
           id={`disabled-default-checkbox`}
-          onClick={(e) => onDone(index, e.target.checked)}
+          onChange={(e) => {
+            onDone(index, e.target.checked);
+            setIsDone(e.target.checked);
+          }}
+          checked={isDone}
         />
         {onChangePosition && (
           <>

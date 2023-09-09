@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Wrapper, TitleWrapper, ButtonWrapper, SelectWrapper } from "./styles";
+import {
+  Wrapper,
+  TitleWrapper,
+  ButtonGroupWrapper,
+  ButtonWrapper,
+  SelectWrapper,
+} from "./styles";
 import { Helmet } from "react-helmet-async";
 import { BsFillPlusSquareFill, BsSearch, BsGrid } from "react-icons/bs";
 import Loader from "components/Loader/Loader";
@@ -113,22 +119,24 @@ export default function Note() {
             <div>
               <h3>{profile.name}`s note</h3>
             </div>
-            <ButtonWrapper>
-              <button
-                onClick={() => addNote()}
-                className="btn btn-primary w-100"
-              >
-                <BsFillPlusSquareFill /> new note
-              </button>
-            </ButtonWrapper>
-            {/* <ButtonWrapper>
-              <button
-                onClick={() => addTodo()}
-                className="btn btn-warning w-100"
-              >
-                <BsFillPlusSquareFill /> new todo
-              </button>
-            </ButtonWrapper> */}
+            <ButtonGroupWrapper>
+              <ButtonWrapper>
+                <button
+                  onClick={() => addNote()}
+                  className="btn btn-primary w-100"
+                >
+                  <BsFillPlusSquareFill /> new note
+                </button>
+              </ButtonWrapper>
+              <ButtonWrapper>
+                <button
+                  onClick={() => addTodo()}
+                  className="btn btn-warning w-100"
+                >
+                  <BsFillPlusSquareFill /> new todo
+                </button>
+              </ButtonWrapper>
+            </ButtonGroupWrapper>
           </TitleWrapper>
           <form onSubmit={(e) => handleSearch(e)} id="search-box">
             <div className="d-flex my-2">

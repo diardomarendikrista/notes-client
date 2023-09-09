@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -13,7 +14,9 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default function NoteAdd() {
   const { id } = useParams();
 
-  const { originPage, loadingDetail, notes } = useSelector((state) => state.note);
+  const { originPage, loadingDetail, notes } = useSelector(
+    (state) => state.note
+  );
   const [title, setTitle] = useState("");
   const [note, setNote] = useState("");
   const [tag, setTag] = useState("");
@@ -47,12 +50,12 @@ export default function NoteAdd() {
     };
     // console.log(updateNote);
     await dispatch(updateNoteAsync(updateNote, notes));
-    if (originPage === "home") navigate("/dashboard");
-    if (originPage === "detail") navigate("/notes/show/" + updateNote.id);
+    handleBack();
   };
 
-  const toHome = () => {
-    navigate("/dashboard");
+  const handleBack = () => {
+    if (!originPage || originPage === "home") navigate("/dashboard");
+    if (originPage === "detail") navigate("/notes/show/" + updateNote.id);
   };
 
   return (
@@ -141,7 +144,7 @@ export default function NoteAdd() {
         <Button className="btn-submit" variant="primary" type="submit">
           Submit
         </Button>
-        <Button onClick={() => toHome()} variant="secondary" type="button">
+        <Button onClick={() => handleBack()} variant="secondary" type="button">
           Back
         </Button>
       </Form>

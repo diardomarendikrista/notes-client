@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loader from "components/Loader/Loader";
+import { useDispatch } from "react-redux";
 
 const Layout = lazy(() => import("./Layouts/index"));
 const Home = lazy(() => import("./pages/Home"));
@@ -11,7 +12,7 @@ const NoteAdd = lazy(() => import("./pages/Dashboard/Notes/Add"));
 const NoteEdit = lazy(() => import("./pages/Dashboard/Notes/Edit"));
 const NoteDetail = lazy(() => import("./pages/Dashboard/Notes/Detail"));
 
-const TodoAdd = lazy(() => import("./pages/Dashboard/Todo/Add"));
+const TodoForm = lazy(() => import("./pages/Dashboard/Todo/Form"));
 
 const router = createBrowserRouter([
   {
@@ -58,13 +59,37 @@ const router = createBrowserRouter([
     path: "/dashboard/todo/add",
     element: (
       <Layout>
-        <TodoAdd />
+        <TodoForm />
+      </Layout>
+    ),
+  },
+  {
+    path: "/dashboard/todo/edit/:id",
+    element: (
+      <Layout>
+        <TodoForm />
+      </Layout>
+    ),
+  },
+  {
+    path: "todo/show/:id",
+    element: (
+      <Layout>
+        <NoteDetail />
       </Layout>
     ),
   },
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (window?.location?.hostname === "localhost") {
+      dispatch({ type: "global/setIsDevelopment", payload: true });
+    }
+  }, [dispatch]);
+
   return (
     <React.Suspense fallback={<Loader center />}>
       <RouterProvider router={router} />

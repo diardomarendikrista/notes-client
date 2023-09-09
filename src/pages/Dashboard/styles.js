@@ -67,9 +67,18 @@ export const TitleWrapper = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonGroupWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+
   @media (max-width: ${M_DEVICES_WIDTH}) {
     width: 100%;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  @media (max-width: ${M_DEVICES_WIDTH}) {
+    width: 50%;
   }
 `;
 
