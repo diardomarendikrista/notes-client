@@ -54,7 +54,7 @@ export default function NoteDetail() {
         {data?.length > 0 &&
           data?.map((item, i) => (
             <div key={i}>
-              {item?.todo}{" "}
+              <span dangerouslySetInnerHTML={{ __html: item?.todo }} />{" "}
               {item?.done ? (
                 <BsCheckLg className="text-success" />
               ) : (

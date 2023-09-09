@@ -12,9 +12,12 @@ import {
   updateNoteAsync,
   fetchNoteAsync,
 } from "store/actions/note";
+import Skeleton from "react-loading-skeleton";
 
 export default function FormTodo() {
-  const { originPage, notes } = useSelector((state) => state.note);
+  const { originPage, loadingDetail, notes } = useSelector(
+    (state) => state.note
+  );
   const [title, setTitle] = useState("");
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
@@ -25,7 +28,15 @@ export default function FormTodo() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleKeyPressTodo = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent the default Enter key behavior (form submission)
+      handleNewTodo();
+    }
+  };
+
   const handleNewTodo = () => {
+    if (!todo) return;
     let newTodoList = [...todoList];
     newTodoList.push({
       order: todoList.length,
@@ -72,8 +83,8 @@ export default function FormTodo() {
     setTodoList(newTodoList);
   };
 
-  const handleSubmitTodo = async (event) => {
-    event.preventDefault();
+  const handleSubmitTodo = async (event, isQuickSave) => {
+    event && event.preventDefault();
     if (!title) {
       Swal.fire("Error!", `Title is required`, "error");
       return;
@@ -92,7 +103,6 @@ export default function FormTodo() {
       note: JSON.stringify(newTodoList),
     };
     if (id) newNote.id = id;
-    console.log(newNote, "newNote");
 
     if (!id) {
       //if new todo
@@ -101,9 +111,8 @@ export default function FormTodo() {
       //if updated todo
       await dispatch(updateNoteAsync(newNote, notes, "todo"));
     }
-    if (originPage === "home") navigate("/dashboard");
-    if (originPage === "detail") navigate("/notes/show/" + id);
-    handleBack();
+
+    id && !isQuickSave && handleBack();
   };
 
   const handleBack = () => {
@@ -117,12 +126,35 @@ export default function FormTodo() {
     setTodoList(JSON.parse(dataNote.note));
   };
 
+  const handleCtrlS = () => {
+    handleSubmitTodo(false, "quicksave");
+  };
+
   useEffect(() => {
     if (id) {
       fetchEditTodo();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  // QuickSave on browser
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault(); // Prevent the default browser behavior (saving the page)
+        handleCtrlS();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, todoList]);
 
   return (
     <Wrapper className="container2">
@@ -141,17 +173,27 @@ export default function FormTodo() {
       <Form onSubmit={(event) => handleSubmitTodo(event)}>
         <Form.Group controlId="formBasicText" className="mb-2">
           <Form.Label>Todo Title *</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Eg: todo today"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
+          {!loadingDetail ? (
+            <Form.Control
+              type="text"
+              placeholder="Eg: todo today"
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+              autoComplete={"off"}
+            />
+          ) : (
+            <Skeleton height={34} />
+          )}
         </Form.Group>
 
         {!id && (
           <>
-            <Button className="btn-submit mt-3" variant="primary" type="submit">
+            <Button
+              className="btn-submit mt-3"
+              variant="primary"
+              type="submit"
+              disabled={loadingDetail}
+            >
               Next
             </Button>
             <Button
@@ -168,45 +210,63 @@ export default function FormTodo() {
           <>
             <Form.Group controlId="formBasicText" className="mb-2 input-todo">
               <Form.Label>To-do *</Form.Label>
-              <div className="d-flex">
-                <Form.Control
-                  type="text"
-                  placeholder="Eg: todo today"
-                  value={todo}
-                  onChange={(event) => setTodo(event.target.value)}
-                />
-                <ButtonAddWrapper>
-                  <Button
-                    className="btn-submit d-flex align-items-center text-white"
-                    variant="info"
-                    type="button"
-                    onClick={() => todo && handleNewTodo()}
-                  >
-                    <BsFillPlusSquareFill className="me-2 " /> Add Todo
-                  </Button>
-                </ButtonAddWrapper>
-              </div>
+              {!loadingDetail ? (
+                <div className="d-flex">
+                  <Form.Control
+                    type="text"
+                    placeholder="Eg: todo today"
+                    value={todo}
+                    onChange={(event) => setTodo(event.target.value)}
+                    onKeyDown={handleKeyPressTodo}
+                    autoComplete={"off"}
+                  />
+                  <ButtonAddWrapper>
+                    <Button
+                      className="btn-submit d-flex align-items-center text-white"
+                      variant="info"
+                      type="button"
+                      onClick={() => handleNewTodo()}
+                    >
+                      <BsFillPlusSquareFill className="me-2 " /> Add Todo
+                    </Button>
+                  </ButtonAddWrapper>
+                </div>
+              ) : (
+                <Skeleton height={34} />
+              )}
             </Form.Group>
 
             <h5>Your To-do :</h5>
             <TodoCardWrapper>
-              {todoList?.map((item, i) => (
-                <TodoCard
-                  key={i}
-                  dataList={todoList}
-                  index={i}
-                  data={item}
-                  onDelete={() => handleDeleteTodo(i)}
-                  onChangePosition={(index, upOrDown) =>
-                    handleChangePosition(index, upOrDown)
-                  }
-                  onDone={(index, value) => handleDone(index, value)}
-                />
-              ))}
+              {loadingDetail &&
+                [0, 1].map((i) => <Skeleton height={31} key={i} />)}
+
+              {!loadingDetail &&
+                todoList?.map((item, i) => (
+                  <TodoCard
+                    key={i}
+                    dataList={todoList}
+                    index={i}
+                    data={item}
+                    onDelete={() => handleDeleteTodo(i)}
+                    onChangePosition={(index, upOrDown) =>
+                      handleChangePosition(index, upOrDown)
+                    }
+                    onDone={(index, value) => handleDone(index, value)}
+                  />
+                ))}
             </TodoCardWrapper>
 
             <Button className="btn-submit mt-3" variant="primary" type="submit">
               Submit
+            </Button>
+            <Button
+              className="btn-submit mt-3"
+              variant="info"
+              type="button"
+              onClick={() => handleSubmitTodo(false, "quicksave")}
+            >
+              QuickSave
             </Button>
             <Button
               onClick={() => handleBack()}

@@ -13,10 +13,6 @@ export const Wrapper = styled.div`
     background-color: #fff;
   }
 
-  .invisible {
-    display: none;
-  }
-
   .div-no-note {
     margin-top: 70px;
     color: gray;
@@ -31,10 +27,6 @@ export const Wrapper = styled.div`
 
   .note-table {
     margin: auto;
-  }
-
-  .invisible {
-    display: none;
   }
 
   .sticky {

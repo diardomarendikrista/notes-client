@@ -18,14 +18,6 @@ export const Wrapper = styled.div`
     color: unset;
   }
 
-  ${({ customWidth }) =>
-    customWidth &&
-    css`
-      width: ${customWidth};
-      margin-right: ${({ customWidth }) =>
-        customWidth === "100%" ? "0px" : "5px"};
-    `}
-
   :hover {
     background-color: azure;
     /* margin-top: -3px;
@@ -40,10 +32,23 @@ export const Wrapper = styled.div`
     padding-bottom: 0px;
   }
 
-  @media (max-width: ${M_DEVICES_WIDTH}) {
-    width: 100%;
-    margin-right: 0px;
-  }
+  ${({ customWidth }) =>
+    customWidth &&
+    css`
+      width: ${customWidth};
+      margin-right: ${({ customWidth }) =>
+        customWidth === "100%" ? "0px" : "5px"};
+    `}
+
+  ${({ type }) =>
+    type === "todo" &&
+    css`
+      background-color: #fff9e7;
+
+      :hover {
+        background-color: #ffedb8;
+      }
+    `}
 
   .btn-div {
     position: absolute;
@@ -130,5 +135,16 @@ export const Wrapper = styled.div`
 
   .text-title:hover {
     font-weight: bold;
+  }
+
+  .title-wrapper {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  @media (max-width: ${M_DEVICES_WIDTH}) {
+    width: 100%;
+    margin-right: 0px;
   }
 `;

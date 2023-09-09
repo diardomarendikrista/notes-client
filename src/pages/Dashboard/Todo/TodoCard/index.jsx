@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { Wrapper, WrapperMenu, DeleteButton, UpDownButton } from "./styles";
-import {
-  BsFillArrowDownSquareFill,
-  BsFillArrowUpSquareFill,
-} from "react-icons/bs";
+import { LuArrowDownSquare, LuArrowUpSquare } from "react-icons/lu";
 import { Form } from "react-bootstrap";
 
 export default function TodoCard({
@@ -59,13 +56,13 @@ export default function TodoCard({
               disabled={!canUp}
               onClick={() => canUp && onChangePosition(index, "up")}
             >
-              <BsFillArrowUpSquareFill />
+              <LuArrowUpSquare />
             </UpDownButton>
             <UpDownButton
               disabled={!canDown}
               onClick={() => canDown && onChangePosition(index, "down")}
             >
-              <BsFillArrowDownSquareFill />
+              <LuArrowDownSquare />
             </UpDownButton>
           </>
         )}

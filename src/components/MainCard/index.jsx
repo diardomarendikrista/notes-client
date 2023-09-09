@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "./styles.js";
 import { Link } from "react-router-dom";
 import { BsXLg, BsCheckLg, BsPencilSquare } from "react-icons/bs";
+import { FcTodoList } from "react-icons/fc";
+import { TfiNotepad } from "react-icons/tfi";
 import { capitalize } from "helpers/globalFunctions";
 import { deleteNoteAsync, setOriginPage } from "store/actions/note";
 
@@ -21,7 +23,7 @@ export default function MainCard({ note, view }) {
 
   const renderTodo = (rawData) => {
     const data = JSON.parse(rawData);
-    console.log(data, "data");
+
     return (
       <div>
         {data?.length > 0 &&
@@ -40,10 +42,15 @@ export default function MainCard({ note, view }) {
   };
 
   return (
-    <Wrapper customWidth={customWidth}>
+    <Wrapper customWidth={customWidth} type={note?.type}>
       <Link to={"/notes/show/" + note?.id}>
         <div>
-          <div>
+          <div className="title-wrapper">
+            {note?.type === "todo" ? (
+              <FcTodoList />
+            ) : (
+              <TfiNotepad style={{ color: "#6FD9E3" }} />
+            )}
             <p className="text-title text-start">{capitalize(note?.title)}</p>
           </div>
           <div className="text-note-wrapper">

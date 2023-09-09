@@ -94,9 +94,9 @@ export default function NoteAdd() {
           />
         </Form.Group> */}
 
-        <div className="mb-2">
+        <div className="mb-2 border">
           <Form.Label>Notes</Form.Label>
-          <div className={loadingDetail ? "invisible" : ""}>
+          <div className={loadingDetail ? "d-none" : ""}>
             <CKEditor
               editor={ClassicEditor}
               data={note}
@@ -114,6 +114,7 @@ export default function NoteAdd() {
               onFocus={(event, editor) => {
                 // console.log("Focus.", editor);
               }}
+              style={{ height: 0 }}
             />
           </div>
           {loadingDetail && <Skeleton height={235} />}

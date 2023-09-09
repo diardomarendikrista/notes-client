@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const TodoCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 `;
 
 export const ButtonAddWrapper = styled.div`
