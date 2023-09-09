@@ -55,7 +55,7 @@ export default function NoteAdd() {
 
   const handleBack = () => {
     if (!originPage || originPage === "home") navigate("/dashboard");
-    if (originPage === "detail") navigate("/notes/show/" + updateNote.id);
+    if (originPage === "detail") navigate("/notes/show/" + id);
   };
 
   return (
